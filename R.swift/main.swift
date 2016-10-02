@@ -27,11 +27,11 @@ do {
     ImageStructGenerator(assetFolders: resources.assetFolders, images: resources.images),
     ColorStructGenerator(colorPalettes: resources.colors),
     FontStructGenerator(fonts: resources.fonts),
-    SegueStructGenerator(storyboards: resources.storyboards),
-    StoryboardStructGenerator(storyboards: resources.storyboards),
-    NibStructGenerator(nibs: resources.nibs),
-    ReuseIdentifierStructGenerator(reusables: resources.reusables),
-    ResourceFileStructGenerator(resourceFiles: resources.resourceFiles),
+//    SegueStructGenerator(storyboards: resources.storyboards),
+//    StoryboardStructGenerator(storyboards: resources.storyboards),
+//    NibStructGenerator(nibs: resources.nibs),
+//    ReuseIdentifierStructGenerator(reusables: resources.reusables),
+//    ResourceFileStructGenerator(resourceFiles: resources.resourceFiles),
     StringsStructGenerator(localizableStrings: resources.localizableStrings),
   ]
 

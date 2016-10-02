@@ -253,10 +253,10 @@ private struct StringValues {
     let escapedKey = key.escapedStringLiteral
 
     if tableName == "Localizable" {
-      return "NSLocalizedString(\"\(escapedKey)\", bundle: R.hostingBundle, comment: \"\")"
+      return "NKLocalized.localized(\"\(escapedKey)\")"
     }
     else {
-      return "NSLocalizedString(\"\(escapedKey)\", tableName: \"\(tableName)\", bundle: R.hostingBundle, comment: \"\")"
+      return "NKLocalized.localized(\"\(escapedKey)\", table: \"\(tableName)\")"
     }
   }
 
