@@ -64,8 +64,8 @@ struct ImageGenerator: Generator {
         )
       ],
       doesThrow: false,
-      returnType: Type._UIImage.asOptional(),
-      body: "return \(Type._UIImage.name)(resource: R.image.\(SwiftIdentifier(name: name)), compatibleWithTraitCollection: traitCollection)"
+      returnType: Type._UIImage,
+      body: "return \(Type._UIImage.name)(resource: R.image.\(SwiftIdentifier(name: name)), compatibleWithTraitCollection: traitCollection)!"
     )
   }
 }
