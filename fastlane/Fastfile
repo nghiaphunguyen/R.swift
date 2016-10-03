@@ -12,13 +12,31 @@ lane :release do |options|
   currentVersion = version_get_podspec()
   Helper.log.info "Current R.swift podspec version is #{currentVersion}"
 
-  changelog = prompt(text: "Please provide release notes:".green, boolean: false, ci_input: "", multi_line_end_keyword: "FIN")
-  af_insert_text_into_file(
-    file_path: "Changelog.md",
-    text: "## #{newVersion}\n\n#{changelog}\n\n",
-    insert_at_bottom: false
-  )
-  isPrerelease = prompt(text: "Is this a prerelease version?".green, boolean: true, ci_input: "")
+  isPrerelease = false
+  if options[:skip_version_bump] != true
+    bumpType = prompt(text: "What kind of release is this? (major/minor/patch/custom)".green, boolean: false, ci_input: "")
+    case bumpType
+    when "major", "minor", "patch"
+      version_bump_podspec(bump_type: bumpType)
+    when "custom"
+      newVersion = prompt(text: "What is the new custom version number?".green, boolean: false, ci_input: "")
+      version_bump_podspec(version_number: newVersion)
+
+      isPrerelease = prompt(text: "Is this a prerelease version?".green, boolean: true, ci_input: "")
+    else
+      raise "Invalid release type: #{bumpType}".red
+    end
+
+    newVersion = version_get_podspec()
+    changelog = prompt(text: "Please provide release notes:".green, boolean: false, ci_input: "", multi_line_end_keyword: "FIN")
+    af_insert_text_into_file(
+      file_path: "Changelog.md",
+      text: "## #{newVersion}\n\n#{changelog}\n\n",
+      insert_at_bottom: false
+    )
+  else
+    isPrerelease = prompt(text: "Is this a prerelease version?".green, boolean: true, ci_input: "")
+  end
 
   # Sync version.swift with version in podspec
   filepath = '../R.swift/version.swift'

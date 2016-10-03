@@ -1,3 +1,8 @@
+## 2.6.0
+
+Update StringGenerator
+PIN
+
 ## 2.5.0
 
 New features:
