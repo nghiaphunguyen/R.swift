@@ -1,3 +1,7 @@
+## 2.7.0
+
+Update syntax
+
 ## 2.6.0
 
 Update StringGenerator
