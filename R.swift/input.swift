@@ -144,7 +144,7 @@ struct CallInformation {
       var resourceValue: AnyObject?
       try outputURL.getResourceValue(&resourceValue, forKey: NSURLIsDirectoryKey)
       if let isDirectory = (resourceValue as? NSNumber)?.boolValue where isDirectory {
-        self.outputURL = outputURL.URLByAppendingPathComponent(ResourceFilename, isDirectory: false)!
+        self.outputURL = outputURL.URLByAppendingPathComponent(ResourceFilename, isDirectory: false)
       } else {
         self.outputURL = outputURL
       }

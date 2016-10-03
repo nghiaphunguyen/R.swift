@@ -1,17 +1,10 @@
 fastlane_version "1.86.0"
 
 lane :release do |options|
-  if options[:skip_git_checks] != true
-    ensure_git_branch(branch: "master")
-    ensure_git_status_clean
-  else
-    Helper.log.info "Skipping the 'git status clean' and branch check!".yellow
-  end
-
   git_pull
 
-  libraryVersionUsed = read_podspec['dependencies']['R.swift.Library'].first
-  libraryPodspecVersion = version_get_podspec(path: 'R.swift.Library/R.swift.Library.podspec')
+  libraryVersionUsed = read_podspec['dependencies']['NR.swift.Library'].first
+  libraryPodspecVersion = version_get_podspec(path: 'R.swift.Library/NR.swift.Library.podspec')
   unless prompt(text: "R.swift.Library #{libraryVersionUsed} is defined as dependency, current version seems to be #{libraryPodspecVersion}.\nAdjust podspec now if needed. Ready to continue?".green, boolean: true, ci_input: "")
     raise "Aborted by user".red
   end
@@ -19,31 +12,7 @@ lane :release do |options|
   currentVersion = version_get_podspec()
   Helper.log.info "Current R.swift podspec version is #{currentVersion}"
 
-  isPrerelease = false
-  if options[:skip_version_bump] != true
-    bumpType = prompt(text: "What kind of release is this? (major/minor/patch/custom)".green, boolean: false, ci_input: "")
-    case bumpType
-    when "major", "minor", "patch"
-      version_bump_podspec(bump_type: bumpType)
-    when "custom"
-      newVersion = prompt(text: "What is the new custom version number?".green, boolean: false, ci_input: "")
-      version_bump_podspec(version_number: newVersion)
-
-      isPrerelease = prompt(text: "Is this a prerelease version?".green, boolean: true, ci_input: "")
-    else
-      raise "Invalid release type: #{bumpType}".red
-    end
-
-    newVersion = version_get_podspec()
-    changelog = prompt(text: "Please provide release notes:".green, boolean: false, ci_input: "", multi_line_end_keyword: "FIN")
-    af_insert_text_into_file(
-      file_path: "Changelog.md",
-      text: "## #{newVersion}\n\n#{changelog}\n\n",
-      insert_at_bottom: false
-    )
-  else
-    isPrerelease = prompt(text: "Is this a prerelease version?".green, boolean: true, ci_input: "")
-  end
+  isPrerelease = true
 
   # Sync version.swift with version in podspec
   filepath = '../R.swift/version.swift'
@@ -51,12 +20,6 @@ lane :release do |options|
 
   content = File.read(filepath).sub(/let version = "(.*)"/, "let version = \"#{newVersion}\"")
   File.open(filepath, 'wb') { |file| file.write(content) }
-
-  if options[:skip_tests] != true
-    runalltests
-  else
-    Helper.log.info "Skipping tests!".yellow
-  end
 
   archivePath = 'rswift.xcarchive'
 
@@ -96,7 +59,7 @@ lane :release do |options|
   push_to_git_remote
 
   af_create_github_release(
-    owner: 'mac-cain13',
+    owner: ‘nghiaphunguyen’,
     repository: 'r.swift',
     tag_name: "v#{newVersion}",
     target_commitish: 'master',
