@@ -89,7 +89,8 @@ lane :release do |options|
     target_commitish: 'master',
     name: "#{newVersion}",
     body: "#{changelog}",
-    prerelease: isPrerelease
+    prerelease: isPrerelease,
+    api_token: '3ab4587225de71d5e1b56ae6d471190aef635c0f'
   )
 
   af_upload_asset_for_github_release(
