@@ -41,7 +41,7 @@ func generateResourceStructsWithResources(resources: Resources, bundleIdentifier
 //      StoryboardGenerator(storyboards: resources.storyboards),
 //      NibGenerator(nibs: resources.nibs),
 //      ReuseIdentifierGenerator(reusables: resources.reusables),
-      ResourceFileGenerator(resourceFiles: resources.resourceFiles),
+//      ResourceFileGenerator(resourceFiles: resources.resourceFiles),
       StringsGenerator(localizableStrings: resources.localizableStrings),
     ]
 

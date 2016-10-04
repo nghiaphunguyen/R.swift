@@ -1,3 +1,7 @@
+## 2.7.1
+
+Update some funtions
+
 ## 2.7.0
 
 Update syntax
