@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
 
   spec.name         = "NR.swift"
-  spec.version      = "2.7.5"
+  spec.version      = "2.7.6"
   spec.license      = "MIT"
 
   spec.summary      = "Get strong typed, autocompleted resources like images, fonts and segues in Swift projects"
@@ -11,14 +11,16 @@ Pod::Spec.new do |spec|
                    * Never type string identifiers again
                    * Supports images, fonts, storyboards, nibs, segues, reuse identifiers and more
                    * Compile time checks and errors instead of runtime crashes
+
+                   * This lib is forked from R.swift
                    DESC
   spec.homepage     = "https://github.com/mac-cain13/R.swift"
   spec.documentation_url = "https://github.com/mac-cain13/R.swift/tree/master/Documentation"
   spec.screenshots  = [ "https://raw.githubusercontent.com/mac-cain13/R.swift/master/Documentation/Images/DemoUseImage.gif",
                         "https://raw.githubusercontent.com/mac-cain13/R.swift/master/Documentation/Images/DemoRenameImage.gif" ]
 
-  spec.author             = { "Mathijs Kadijk" => "mkadijk@gmail.com" }
-  spec.social_media_url   = "https://twitter.com/mac_cain13"
+  spec.author             = { "Nghia Nguyen" => "nghiaphunguyen501@gmail.com" }
+  spec.social_media_url   = "https://twitter.com/nghiaphunguyen"
 
   spec.requires_arc = true
     spec.source = { :http => "https://github.com/nghiaphunguyen/R.swift/releases/download/v#{spec.version}/rswift-#{spec.version}.zip" }
@@ -26,7 +28,7 @@ Pod::Spec.new do |spec|
   spec.ios.deployment_target     = '8.0'
   spec.tvos.deployment_target    = '9.0'
 
-  spec.dependency "NR.swift.Library", "2.3.6"
+  spec.dependency "NR.swift.Library", "2.3.7"
 
   spec.preserve_paths = "rswift"
 
