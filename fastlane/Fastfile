@@ -1,17 +1,17 @@
 fastlane_version "1.86.0"
 
 lane :release do |options|
-  if options[:skip_git_checks] != true
-    ensure_git_branch(branch: "master")
-    ensure_git_status_clean
-  else
-    Helper.log.info "Skipping the 'git status clean' and branch check!".yellow
-  end
+  # if options[:skip_git_checks] != true
+  #   ensure_git_branch(branch: "master")
+  #   ensure_git_status_clean
+  # else
+  #   Helper.log.info "Skipping the 'git status clean' and branch check!".yellow
+  # end
 
-  git_pull
+  # git_pull
 
-  libraryVersionUsed = read_podspec['dependencies']['R.swift.Library'].first
-  libraryPodspecVersion = version_get_podspec(path: 'R.swift.Library/R.swift.Library.podspec')
+  libraryVersionUsed = read_podspec['dependencies']['NR.swift.Library'].first
+  libraryPodspecVersion = version_get_podspec(path: 'R.swift.Library/NR.swift.Library.podspec')
   unless prompt(text: "R.swift.Library #{libraryVersionUsed} is defined as dependency, current version seems to be #{libraryPodspecVersion}.\nAdjust podspec now if needed. Ready to continue?".green, boolean: true, ci_input: "")
     raise "Aborted by user".red
   end
@@ -96,7 +96,7 @@ lane :release do |options|
   push_to_git_remote
 
   af_create_github_release(
-    owner: 'mac-cain13',
+    owner: 'nghiaphunguyen',
     repository: 'r.swift',
     tag_name: "v#{newVersion}",
     target_commitish: 'master',
