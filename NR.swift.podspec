@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
 
   spec.name         = "R.swift"
-  spec.version      = "3.1.0"
+  spec.version      = "3.2.0"
   spec.license      = "MIT"
 
   spec.summary      = "Get strong typed, autocompleted resources like images, fonts and segues in Swift projects"
@@ -17,16 +17,16 @@ Pod::Spec.new do |spec|
   spec.screenshots  = [ "https://raw.githubusercontent.com/mac-cain13/R.swift/master/Documentation/Images/DemoUseImage.gif",
                         "https://raw.githubusercontent.com/mac-cain13/R.swift/master/Documentation/Images/DemoRenameImage.gif" ]
 
-  spec.author             = { "Mathijs Kadijk" => "mkadijk@gmail.com" }
-  spec.social_media_url   = "https://twitter.com/mac_cain13"
+  spec.author             = { "Nghia Nguyen" => "nghiaphunguyen501@gmail.com" }
+  spec.social_media_url   = "https://twitter.com/nghiaphunguyen"
 
   spec.requires_arc = true
-  spec.source = { :http => "https://github.com/mac-cain13/R.swift/releases/download/v#{spec.version}/rswift-#{spec.version}.zip" }
+  spec.source = { :http => "https://github.com/nghiaphunguyen/R.swift/releases/download/v#{spec.version}/rswift-#{spec.version}.zip" }
 
   spec.ios.deployment_target     = '8.0'
   spec.tvos.deployment_target    = '9.0'
 
-  spec.dependency "R.swift.Library", "~> 3.0.2"
+  spec.dependency "NR.swift.Library", "~> 3.1.3"
 
   spec.preserve_paths = "rswift"
 
