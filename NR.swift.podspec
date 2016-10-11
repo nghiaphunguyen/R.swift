@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
 
-  spec.name         = "R.swift"
-  spec.version      = "3.2.0"
+  spec.name         = "NR.swift"
+  spec.version      = "3.2.3"
   spec.license      = "MIT"
 
   spec.summary      = "Get strong typed, autocompleted resources like images, fonts and segues in Swift projects"

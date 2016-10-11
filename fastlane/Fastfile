@@ -8,11 +8,11 @@ lane :release do |options|
   #   Helper.log.info "Skipping the 'git status clean' and branch check!".yellow
   # end
 
-  # git_pull
+  git_pull
 
   libraryVersionUsed = read_podspec['dependencies']['NR.swift.Library'].first
   libraryPodspecVersion = version_get_podspec(path: 'R.swift.Library/NR.swift.Library.podspec')
-  unless prompt(text: "R.swift.Library #{libraryVersionUsed} is defined as dependency, current version seems to be #{libraryPodspecVersion}.\nAdjust podspec now if needed. Ready to continue?".green, boolean: true, ci_input: "")
+  unless prompt(text: "NR.swift.Library #{libraryVersionUsed} is defined as dependency, current version seems to be #{libraryPodspecVersion}.\nAdjust podspec now if needed. Ready to continue?".green, boolean: true, ci_input: "")
     raise "Aborted by user".red
   end
 
@@ -52,11 +52,11 @@ lane :release do |options|
   content = File.read(filepath).sub(/let version = "(.*)"/, "let version = \"#{newVersion}\"")
   File.open(filepath, 'wb') { |file| file.write(content) }
 
-  if options[:skip_tests] != true
-    runalltests
-  else
-    Helper.log.info "Skipping tests!".yellow
-  end
+  # if options[:skip_tests] != true
+  #   runalltests
+  # else
+  #   Helper.log.info "Skipping tests!".yellow
+  # end
 
   archivePath = 'rswift.xcarchive'
 
